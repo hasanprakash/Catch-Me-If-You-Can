@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations.Rigging;
 
 public class Jump : MonoBehaviour
 {
@@ -15,20 +16,28 @@ public class Jump : MonoBehaviour
     [SerializeField] Text horizontalSpeedText;
     [SerializeField] float jumpSpeed = 50f;
     [SerializeField] float maxJumpHorizontalSpeed = 150f;
+    [SerializeField] GameObject twoBoneIK;
+    [Range(0, 1)]  public float batWeight = 0.5f;
+    TwoBoneIKConstraint ikconstraint;
     float jumpHorizontalSpeed = 150f;
     Animator animator;
     Rigidbody rb;
+    float ikconstraintSpeed = 1.5f;
+    public double velocityOfPlayer = 5f;
     bool isGrounded = true;
     bool isJumping = false;
     bool isFalling = false;
+    
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        ikconstraint = twoBoneIK.GetComponent<TwoBoneIKConstraint>();
     }
 
     void Update()
     {
+        ikconstraint.weight = batWeight;
         displayPlayerInfo();
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -42,12 +51,14 @@ public class Jump : MonoBehaviour
 
         if(!CheckIsGrounded())
         {
+            //batWeight = Mathf.Clamp(batWeight - ikconstraintSpeed * Time.deltaTime, 0f, 1f);
             Vector3 movingDirection = transform.forward * jumpHorizontalSpeed;
             movingDirection.y = 0f;
             rb.AddForce(movingDirection * Time.deltaTime, ForceMode.Impulse);
         }
         else
         {
+            //batWeight = Mathf.Clamp(batWeight + ikconstraintSpeed * Time.deltaTime, 0f, batWeight);
             calculatePlayerVelocity();
         }
     }
@@ -77,7 +88,7 @@ public class Jump : MonoBehaviour
         }
     }
 
-    bool CheckIsGrounded()
+    public bool CheckIsGrounded()
     {
         // with Capsule
         Vector3 startingPosition = groundCheck.position;
@@ -102,6 +113,7 @@ public class Jump : MonoBehaviour
         playerVelocity.y = 0f;
         float playerMagnitude = playerVelocity.magnitude;
         velocityText.text = "Velocity = " + Math.Round(playerMagnitude, 1) + " u/s";
+        velocityOfPlayer = Math.Round(playerMagnitude, 1);
         horizontalSpeedText.text = "Horizontal Speed = " + Math.Round(jumpHorizontalSpeed);
     }
 }
