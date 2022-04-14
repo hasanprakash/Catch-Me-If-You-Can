@@ -6,6 +6,7 @@ using UnityEngine.Animations.Rigging;
 public class Attack : MonoBehaviour
 {
     [SerializeField] GameObject multiAim;
+    [SerializeField] GameObject hero;
     Jump jump;
     MultiAimConstraint multiAimConstraint;
     Animation anime;
@@ -20,9 +21,9 @@ public class Attack : MonoBehaviour
     {
         multiAimConstraint = multiAim.GetComponent<MultiAimConstraint>();
         anime = GetComponent<Animation>();
-        jump = FindObjectOfType<Jump>();
+        jump = hero.GetComponent<Jump>();
         batWeight = jump.batWeight;
-        animator = FindObjectOfType<Animator>();
+        animator = hero.GetComponent<Animator>();
     }
 
     void Update()
