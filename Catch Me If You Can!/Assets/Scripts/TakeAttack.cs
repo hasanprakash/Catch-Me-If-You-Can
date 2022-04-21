@@ -34,6 +34,6 @@ public class TakeAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         spawner.instantiatePlayer(mainCharacter.transform);
-        Destroy(mainCharacter);
+        //Destroy(mainCharacter);
     }
 }

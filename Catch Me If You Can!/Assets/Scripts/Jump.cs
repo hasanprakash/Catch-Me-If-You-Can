@@ -4,8 +4,9 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Animations.Rigging;
+using HasanPrakash.Singlestons;
 
-public class Jump : MonoBehaviour
+public class Jump : Singleton<Jump>
 {
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
@@ -39,15 +40,15 @@ public class Jump : MonoBehaviour
     {
         ikconstraint.weight = batWeight;
         displayPlayerInfo();
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            //rb.velocity = direction;
-            animator.SetBool("isJumping", true);
-            isJumping = true;
-            Vector3 direction = Vector3.up * jumpSpeed;
-            isGrounded = false;
-            rb.AddForce(direction, ForceMode.Impulse);
-        }
+       //if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+       //{
+            ////rb.velocity = direction;
+            //animator.SetBool("isJumping", true);
+            //isJumping = true;
+            //Vector3 direction = Vector3.up * jumpSpeed;
+            //isGrounded = false;
+            //rb.AddForce(direction, ForceMode.Impulse);
+        //}
 
         if(!CheckIsGrounded())
         {

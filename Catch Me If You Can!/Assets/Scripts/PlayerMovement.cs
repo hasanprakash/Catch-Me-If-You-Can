@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        move = Input.GetAxis("Vertical");
+        /*move = Input.GetAxis("Vertical");
         if(move != 0)
         {
             animator.SetFloat("inputX", move);
@@ -22,6 +22,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetFloat("inputX", move);
-        }
+        }*/
     }
 }
