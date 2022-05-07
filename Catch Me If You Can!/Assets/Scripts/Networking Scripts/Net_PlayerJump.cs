@@ -35,6 +35,7 @@ public class Net_PlayerJump : NetworkBehaviour
         animator = GetComponent<Animator>();
         networkObject = GetComponent<NetworkObject>();
         rb = networkObject.GetComponent<Rigidbody>();
+        if(IsServer)
         UpdatePlayerJumpLockedServerRpc(true);
     }
 

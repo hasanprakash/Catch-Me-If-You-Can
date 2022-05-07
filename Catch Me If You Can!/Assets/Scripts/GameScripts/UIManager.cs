@@ -9,12 +9,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text playersCountText;
     [SerializeField] private Button startServer;
     [SerializeField] private Button startClient;
+    [SerializeField] private Button suffleClimbers;
     //TMP_Text playerNameText;
     void Start()
     {
         //playerNameText = playerName.GetComponent<TMP_Text>();
         startServer.onClick.AddListener(StartMyServer);
         startClient.onClick.AddListener(StartMyClient);
+        suffleClimbers.onClick.AddListener(SuffleClimbers);
     }
 
     void Update()
@@ -51,5 +53,10 @@ public class UIManager : MonoBehaviour
         {
             Debug.Log("Client failed to start");
         }
+    }
+
+    void SuffleClimbers()
+    {
+        SpawnClimbers.Instance.ShuffleClimbers();
     }
 }

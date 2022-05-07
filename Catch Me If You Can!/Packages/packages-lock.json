@@ -99,20 +99,21 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.mathematics": {
-      "version": "1.2.5",
+      "version": "1.2.6",
       "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.netcode.gameobjects": {
-      "version": "file:C:/MyFiles/semester_6/UNITY/com.unity.netcode.gameobjects/com.unity.netcode.gameobjects",
+      "version": "1.0.0-pre.7",
       "depth": 0,
-      "source": "local",
+      "source": "registry",
       "dependencies": {
         "com.unity.nuget.mono-cecil": "1.10.1",
         "com.unity.transport": "1.0.0"
-      }
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.nuget.mono-cecil": {
       "version": "1.10.1",
